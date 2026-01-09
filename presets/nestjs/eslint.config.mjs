@@ -59,6 +59,8 @@ export default defineConfig([
             '@typescript-eslint/no-non-null-assertion': 'warn',
             '@typescript-eslint/interface-name-prefix': 'off',
 
+            '@darraghor/nestjs-typed/provided-injected-should-match-factory-parameters': 'off',
+
             // General best practices
             'no-console': ['warn', { allow: ['warn', 'error'] }],
             'no-debugger': 'error',
