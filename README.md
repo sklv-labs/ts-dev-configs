@@ -32,8 +32,8 @@ npm install --save-dev @eslint/js typescript-eslint globals eslint-config-pretti
 # For React preset
 npm install --save-dev eslint-plugin-react eslint-plugin-react-hooks @vitejs/plugin-react
 
-# For NestJS preset
-npm install --save-dev @nestjs/eslint-plugin-nestjs
+# For NestJS preset (optional but recommended)
+npm install --save-dev @darraghor/eslint-plugin-nestjs-typed
 
 # For testing
 npm install --save-dev jest@^29.7.0 ts-jest@^29.2.0 @types/jest
@@ -61,9 +61,13 @@ The base preset includes configurations for TypeScript, ESLint, Prettier, Jest, 
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src"
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
 ```
+
+**Note:** Preset configs only define `compilerOptions`. You must define `include` and `exclude` in your project's `tsconfig.json`.
 
 #### ESLint Config (Flat Config - ESLint 9)
 
@@ -131,9 +135,13 @@ The React preset extends the base preset with React-specific configurations.
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src"
-  }
+  },
+  "include": ["src/**/*", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "dist", "build"]
 }
 ```
+
+**Note:** Preset configs only define `compilerOptions`. You must define `include` and `exclude` in your project's `tsconfig.json`.
 
 #### ESLint Config (Flat Config - ESLint 9)
 
@@ -170,9 +178,13 @@ The NestJS preset extends the base preset with NestJS-specific configurations.
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src"
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "test"]
 }
 ```
+
+**Note:** Preset configs only define `compilerOptions`. You must define `include` and `exclude` in your project's `tsconfig.json`.
 
 #### ESLint Config (Flat Config - ESLint 9)
 
@@ -188,6 +200,22 @@ export default nestjsEslint;
 ```js
 // jest.config.js
 module.exports = require('@sklv-labs/ts-dev-configs/presets/nestjs/jest.config.js');
+```
+
+#### TypeScript Config for Tests
+
+```json
+// tsconfig.spec.json
+{
+  "extends": "@sklv-labs/ts-dev-configs/presets/nestjs/tsconfig.spec.json",
+  "compilerOptions": {
+    "rootDir": "./src"
+  },
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}
 ```
 
 ## Additional Configs
@@ -325,6 +353,69 @@ const viteBasePath = configs.build.vite;
 └── src/
     └── index.ts       # Main exports
 ```
+
+## Local Development with Yalc
+
+For local development and testing, this package uses [yalc](https://github.com/wclr/yalc) to link the package locally without publishing to npm.
+
+### Setup
+
+1. **In the `ts-dev-configs` package directory:**
+
+   ```bash
+   cd ts-dev-configs
+   npm install
+   ```
+
+2. **Publish to yalc local repository:**
+
+   ```bash
+   npm run yalc:publish
+   ```
+
+   Or force update if already published:
+
+   ```bash
+   npm run yalc:publish:force
+   ```
+
+3. **In your consuming project (e.g., `ts-nestjs-openapi`):**
+
+   ```bash
+   cd ../ts-nestjs-openapi
+   npm run yalc:link
+   ```
+
+   This will replace the npm version with the local yalc version.
+
+4. **Update when you make changes:**
+
+   In `ts-dev-configs`:
+   ```bash
+   npm run yalc:publish
+   ```
+
+   In the consuming project:
+   ```bash
+   npm run yalc:update
+   ```
+
+5. **Remove yalc link and restore npm version:**
+
+   ```bash
+   npm run yalc:remove
+   npm install
+   ```
+
+### Workflow
+
+1. Make changes to `ts-dev-configs`
+2. Run `npm run yalc:publish` in `ts-dev-configs`
+3. Run `npm run yalc:update` in consuming projects
+4. Test your changes
+5. Repeat as needed
+
+**Note:** After using yalc, remember to remove the link before committing changes to ensure the package.json doesn't reference the local yalc version.
 
 ## Contributing
 

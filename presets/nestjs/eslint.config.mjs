@@ -1,16 +1,21 @@
 import eslint from '@eslint/js';
 import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
-import nestjsPlugin from '@nestjs/eslint-plugin-nestjs';
 import importPlugin from 'eslint-plugin-import-x';
 import globals from 'globals';
 import prettier from 'eslint-config-prettier';
+import prettierPlugin from 'eslint-plugin-prettier';
+
+import eslintNestJs from '@darraghor/eslint-plugin-nestjs-typed';
 
 export default defineConfig([
     // Base recommended configs
     eslint.configs.recommended,
     ...tseslint.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,
+
+    // NestJS Typed plugin recommended rules
+    ...eslintNestJs.configs.flatRecommended,
 
     // Global ignores
     {
@@ -35,8 +40,8 @@ export default defineConfig([
         },
         plugins: {
             '@typescript-eslint': tseslint.plugin,
-            '@nestjs': nestjsPlugin,
             'import-x': importPlugin,
+            prettier: prettierPlugin,
         },
         rules: {
             // TypeScript specific rules
@@ -50,13 +55,9 @@ export default defineConfig([
                     varsIgnorePattern: '^_',
                 },
             ],
-            '@typescript-eslint/prefer-const': 'error',
+            'prefer-const': 'error',
             '@typescript-eslint/no-non-null-assertion': 'warn',
             '@typescript-eslint/interface-name-prefix': 'off',
-
-            // NestJS specific rules
-            '@nestjs/use-validation-pipe': 'warn',
-            '@nestjs/use-pipes-decorator': 'warn',
 
             // General best practices
             'no-console': ['warn', { allow: ['warn', 'error'] }],
@@ -90,6 +91,9 @@ export default defineConfig([
             ],
             'import-x/no-duplicates': 'error',
             'import-x/no-unresolved': 'off', // TypeScript handles this
+
+            // Prettier rules
+            'prettier/prettier': 'error',
         },
     },
 

@@ -29,11 +29,24 @@
         "./presets/base": "./presets/base/index.js",
         "./presets/react": "./presets/react/index.js",
         "./presets/nestjs": "./presets/nestjs/index.js",
+        "./presets/base/tsconfig.json": "./presets/base/tsconfig.json",
+        "./presets/react/tsconfig.json": "./presets/react/tsconfig.json",
+        "./presets/nestjs/tsconfig.json": "./presets/nestjs/tsconfig.json",
+        "./presets/nestjs/tsconfig.spec.json": "./presets/nestjs/tsconfig.spec.json",
+        "./presets/base/prettier.js": "./presets/base/prettier.js",
+        "./presets/base/jest.config.js": "./presets/base/jest.config.js",
+        "./presets/nestjs/jest.config.js": "./presets/nestjs/jest.config.js",
+        "./presets/base/vitest.config.ts": "./presets/base/vitest.config.ts",
+        "./presets/react/vite.config.ts": "./presets/react/vite.config.ts",
         "./eslint/base": "./presets/base/eslint.config.mjs",
         "./eslint/react": "./presets/react/eslint.config.mjs",
         "./eslint/nestjs": "./presets/nestjs/eslint.config.mjs",
         "./configs/git": "./configs/git/index.js",
+        "./configs/git/commitlint.js": "./configs/git/commitlint.js",
+        "./configs/git/lint-staged.js": "./configs/git/lint-staged.js",
         "./configs/build": "./configs/build/index.js",
+        "./configs/build/vite.base.ts": "./configs/build/vite.base.ts",
+        "./configs/build/webpack.base.js": "./configs/build/webpack.base.js",
         "./configs/editor": "./configs/editor/index.js"
     },
     "files": [
@@ -46,7 +59,9 @@
     "peerDependencies": {
         "typescript": "^5.9.0",
         "eslint": "^9.0.0",
-        "prettier": "^3.6.0"
+        "prettier": "^3.6.0",
+        "eslint-plugin-prettier": "^5.5.4",
+        "@darraghor/eslint-plugin-nestjs-typed": "^7.0.0"
     },
     "peerDependenciesMeta": {
         "typescript": {
@@ -57,19 +72,28 @@
         },
         "prettier": {
             "optional": false
+        },
+        "eslint-plugin-prettier": {
+            "optional": true
+        },
+        "@darraghor/eslint-plugin-nestjs-typed": {
+            "optional": true
         }
     },
     "devDependencies": {
         "@types/node": "^24.0.0",
         "typescript": "^5.9.2",
-        "vitest": "^4.0.7"
+        "vitest": "^4.0.7",
+        "yalc": "^1.0.0-pre.53"
     },
     "scripts": {
         "type-check": "tsc --noEmit",
         "prepublishOnly": "npm run type-check",
         "version:patch": "npm version patch && git push --follow-tags",
         "version:minor": "npm version minor && git push --follow-tags",
-        "version:major": "npm version major && git push --follow-tags"
+        "version:major": "npm version major && git push --follow-tags",
+        "yalc:publish": "yalc push",
+        "yalc:publish:force": "yalc push --force"
     },
     "engines": {
         "node": ">=24.0.0"
