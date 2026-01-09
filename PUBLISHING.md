@@ -107,13 +107,74 @@ npm publish --access public
 - Scoped packages must start with `@`
 - Organization name must match your npm username or organization
 
+## Automated Publishing (Recommended)
+
+This repository includes GitHub Actions workflows for automated publishing using **npm Trusted Publishers** (OIDC authentication).
+
+### Setup Trusted Publishers
+
+1. **Configure on npm:**
+   - Go to your package page on npm: https://www.npmjs.com/package/@sklv-labs/ts-dev-configs
+   - Click on "Package settings" → "Publishing access"
+   - Click "Add trusted publisher"
+   - Select "GitHub Actions"
+   - Enter your repository: `sklv-labs/ts-dev-configs`
+   - Enter the workflow file: `.github/workflows/publish.yml`
+   - Click "Add trusted publisher"
+
+2. **No secrets needed!** 
+   - Trusted Publishers use OIDC (OpenID Connect) authentication
+   - No npm tokens to manage or rotate
+   - More secure than traditional token-based authentication
+
+### Automated Release Flow
+
+1. **Make your changes** and commit them:
+   ```bash
+   git add .
+   git commit -m "feat: add new feature"
+   git push
+   ```
+
+2. **Bump version and create tag** (this triggers the publish workflow):
+   ```bash
+   # Patch version (0.1.0 -> 0.1.1)
+   npm run version:patch
+
+   # Minor version (0.1.0 -> 0.2.0)
+   npm run version:minor
+
+   # Major version (0.1.0 -> 1.0.0)
+   npm run version:major
+   ```
+
+   These commands will:
+   - Update `package.json` version
+   - Create a git commit
+   - Create a git tag (e.g., `v0.1.1`)
+   - Push everything to GitHub
+
+3. **GitHub Actions automatically:**
+   - Detects the new tag
+   - Runs type checking
+   - Publishes to npm
+   - Creates a GitHub release
+
+### Manual Publishing (Fallback)
+
+If automation fails, you can still publish manually:
+
+```bash
+npm publish --access public
+```
+
 ## Best Practices
 
 1. **Always test locally first**: Use `npm pack` to create a tarball and test it
 2. **Use semantic versioning**: Follow semver (major.minor.patch)
 3. **Update CHANGELOG.md**: Document changes before publishing
 4. **Tag releases in git**: `npm version` automatically creates tags
-5. **Publish from CI/CD**: Consider automating releases
+5. **Use automated publishing**: Let GitHub Actions handle the release
 
 ## Testing the Published Package
 
