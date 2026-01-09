@@ -1,0 +1,73 @@
+{
+    "name": "@sklv-labs/ts-dev-configs",
+    "version": "0.1.0",
+    "description": "Unified development configurations for TypeScript projects with support for React, NestJS, and more",
+    "keywords": [
+        "typescript",
+        "eslint",
+        "prettier",
+        "jest",
+        "vitest",
+        "config",
+        "preset",
+        "react",
+        "nestjs"
+    ],
+    "license": "MIT",
+    "author": "sklv-labs",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sklv-labs/ts-dev-configs.git"
+    },
+    "main": "./src/index.ts",
+    "types": "./src/index.ts",
+    "exports": {
+        ".": "./src/index.ts",
+        "./base": "./presets/base/index.js",
+        "./react": "./presets/react/index.js",
+        "./nestjs": "./presets/nestjs/index.js",
+        "./presets/base": "./presets/base/index.js",
+        "./presets/react": "./presets/react/index.js",
+        "./presets/nestjs": "./presets/nestjs/index.js",
+        "./eslint/base": "./presets/base/eslint.config.mjs",
+        "./eslint/react": "./presets/react/eslint.config.mjs",
+        "./eslint/nestjs": "./presets/nestjs/eslint.config.mjs",
+        "./configs/git": "./configs/git/index.js",
+        "./configs/build": "./configs/build/index.js",
+        "./configs/editor": "./configs/editor/index.js"
+    },
+    "files": [
+        "src",
+        "presets",
+        "configs",
+        "README.md",
+        "CHANGELOG.md"
+    ],
+    "peerDependencies": {
+        "typescript": "^5.9.0",
+        "eslint": "^9.0.0",
+        "prettier": "^3.6.0"
+    },
+    "peerDependenciesMeta": {
+        "typescript": {
+            "optional": false
+        },
+        "eslint": {
+            "optional": false
+        },
+        "prettier": {
+            "optional": false
+        }
+    },
+    "devDependencies": {
+        "@types/node": "^24.0.0",
+        "typescript": "^5.9.2",
+        "vitest": "^4.0.7"
+    },
+    "scripts": {
+        "type-check": "tsc --noEmit"
+    },
+    "engines": {
+        "node": ">=24.0.0"
+    }
+}
