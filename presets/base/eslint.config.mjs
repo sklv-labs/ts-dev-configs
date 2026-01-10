@@ -48,7 +48,6 @@ export default defineConfig([
                     varsIgnorePattern: '^_',
                 },
             ],
-            '@typescript-eslint/prefer-const': 'error',
             '@typescript-eslint/no-non-null-assertion': 'warn',
 
             // General best practices
