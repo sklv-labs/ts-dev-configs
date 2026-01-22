@@ -2,8 +2,8 @@
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "../base/tsconfig.json",
     "compilerOptions": {
-        "module": "CommonJS",
-        "moduleResolution": "node",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "target": "ES2024",
         "lib": [
             "ES2024"
@@ -14,8 +14,6 @@
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
         "sourceMap": true,
-        "outDir": "./dist",
-        "baseUrl": "./",
         "incremental": true,
         "skipLibCheck": true,
         "strictNullChecks": true,
@@ -23,7 +21,7 @@
         "noImplicitAny": true,
         "strictBindCallApply": true,
         "forceConsistentCasingInFileNames": true,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
     },
     "files": []
 }

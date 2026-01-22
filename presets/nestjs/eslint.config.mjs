@@ -6,16 +6,11 @@ import globals from 'globals';
 import prettier from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 
-import eslintNestJs from '@darraghor/eslint-plugin-nestjs-typed';
-
 export default defineConfig([
     // Base recommended configs
     eslint.configs.recommended,
     ...tseslint.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,
-
-    // NestJS Typed plugin recommended rules
-    ...eslintNestJs.configs.flatRecommended,
 
     // Global ignores
     {
