@@ -74,25 +74,19 @@
         },
         "eslint-plugin-prettier": {
             "optional": true
-        },
-        "@darraghor/eslint-plugin-nestjs-typed": {
-            "optional": true
         }
     },
     "devDependencies": {
-        "@types/node": "^24.0.0",
-        "typescript": "^5.9.2",
-        "vitest": "^4.0.7",
-        "yalc": "^1.0.0-pre.53"
+        "@types/node": "^25.0.10",
+        "typescript": "^5.9.3",
+        "vitest": "^4.0.18"
     },
     "scripts": {
         "type-check": "tsc --noEmit",
         "prepublishOnly": "npm run type-check",
         "version:patch": "npm version patch && git push --follow-tags",
         "version:minor": "npm version minor && git push --follow-tags",
-        "version:major": "npm version major && git push --follow-tags",
-        "yalc:publish": "yalc push",
-        "yalc:publish:force": "yalc push --force"
+        "version:major": "npm version major && git push --follow-tags"
     },
     "engines": {
         "node": ">=24.0.0"
