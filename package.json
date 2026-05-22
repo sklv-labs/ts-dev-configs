@@ -1,6 +1,6 @@
 {
     "name": "@sklv-labs/ts-dev-configs",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "description": "Unified development configurations for TypeScript projects with support for React, NestJS, and more",
     "keywords": [
         "typescript",
@@ -57,8 +57,8 @@
         "CHANGELOG.md"
     ],
     "peerDependencies": {
-        "typescript": "^5.9.0",
-        "eslint": "^9.0.0",
+        "typescript": "^5.9.0 || ^6.0.0",
+        "eslint": "^9.0.0 || ^10.0.0",
         "prettier": "^3.6.0",
         "eslint-plugin-prettier": "^5.5.4"
     },
@@ -77,9 +77,9 @@
         }
     },
     "devDependencies": {
-        "@types/node": "^25.0.10",
-        "typescript": "^5.9.3",
-        "vitest": "^4.0.18"
+        "@types/node": "^25.9.1",
+        "typescript": "^6.0.3",
+        "vitest": "^4.1.7"
     },
     "scripts": {
         "type-check": "tsc --noEmit",
